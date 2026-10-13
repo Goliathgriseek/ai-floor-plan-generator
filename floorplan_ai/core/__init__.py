@@ -1,0 +1,1 @@
+"""Core engine: prompt interpretation, layout synthesis, constraint solving."""
