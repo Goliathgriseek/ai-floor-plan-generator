@@ -1,0 +1,54 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Generated floor plans and intermediate rasters
+out/
+generated/
+*.fp.json
+*.fp.png
+*.fp.svg
+*.dxf
+*.ifc
+*.cache/
+
+# Model weights pulled at runtime (see floorplan_ai/models/registry.py)
+weights/
+*.safetensors
+*.onnx
+*.pt
+*.ckpt
+
+# Tooling caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local env
+.env
+config/local.yaml
