@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-floor-plan-generator"
+version = "0.6.3"
+description = "Desktop AI floor plan generator: prompt to dimensioned, code-compliant residential floor plans."
+readme = "docs/ARCHITECTURE.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "ai-floor-plan-generator contributors" }]
+keywords = ["floor-plan", "generative-design", "cad", "architecture", "ai"]
+
+dependencies = [
+    "PySide6>=6.7,<7.0",        # desktop shell; Qt6 binding, LGPL
+    "numpy>=1.26,<3.0",
+    "shapely>=2.0,<3.0",        # polygon ops for room adjacency
+    "networkx>=3.2,<4.0",       # room graph / circulation solver
+    "onnxruntime>=1.17,<2.0",   # runs the layout diffusion model
+    "pydantic>=2.6,<3.0",       # schema-validated plan IR
+    "ezdxf>=1.1,<2.0",          # DXF export for AutoCAD/Revit round-trip
+    "Pillow>=10.2,<12.0",       # raster preview + PNG export
+    "PyYAML>=6.0,<7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9.0",
+    "pytest-qt>=4.4,<5.0",
+    "ruff>=0.4,<0.7",
+    "mypy>=1.9,<2.0",
+]
+gpu = ["onnxruntime-gpu>=1.17,<2.0"]
+
+[project.scripts]
+floorplan-gen = "floorplan_ai.bootstrap.app:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["floorplan_ai*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
